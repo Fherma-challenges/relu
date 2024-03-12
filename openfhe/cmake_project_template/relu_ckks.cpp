@@ -22,7 +22,7 @@ void ReluCKKS::initCC()
         std::exit(1);
     }
 
-    if (!Serial::DeserializeFromFile(m_PubKeyLocation, m_PublicKey, SerType::BINARY))
+    if (!Serial::DeserializeFromFile(m_PubKeyLocation, m_PublicKey, SerType::JSON))
     {
         std::cerr << "Could not deserialize public key file" << std::endl;
         std::exit(1);
@@ -33,7 +33,7 @@ void ReluCKKS::initCC()
     {
         std::exit(1);
     }
-    if (!m_cc->DeserializeEvalMultKey(multKeyIStream, SerType::BINARY))
+    if (!m_cc->DeserializeEvalMultKey(multKeyIStream, SerType::JSON))
     {
         std::cerr << "Could not deserialize rot key file" << std::endl;
         std::exit(1);
@@ -45,13 +45,13 @@ void ReluCKKS::initCC()
         std::exit(1);
     }
 
-    if (!m_cc->DeserializeEvalAutomorphismKey(rotKeyIStream, SerType::BINARY))
+    if (!m_cc->DeserializeEvalAutomorphismKey(rotKeyIStream, SerType::JSON))
     {
         std::cerr << "Could not deserialize eval rot key file" << std::endl;
         std::exit(1);
     }
 
-    if (!Serial::DeserializeFromFile(m_InputLocation, m_InputC, SerType::BINARY))
+    if (!Serial::DeserializeFromFile(m_InputLocation, m_InputC, SerType::JSON))
     {
         std::exit(1);
     }
@@ -63,7 +63,7 @@ void ReluCKKS::eval()
 
 void ReluCKKS::serializeOutput()
 {
-    if (!Serial::SerializeToFile(m_OutputLocation, m_OutputC, SerType::BINARY))
+    if (!Serial::SerializeToFile(m_OutputLocation, m_OutputC, SerType::JSON))
     {
         std::cerr << " Error writing ciphertext 1" << std::endl;
     }
